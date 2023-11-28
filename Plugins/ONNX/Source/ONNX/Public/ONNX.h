@@ -10,7 +10,7 @@ class ONNX_API FONNXModule : public IModuleInterface
 public:
 	virtual void StartupModule() override;
 	virtual void ShutdownModule() override;
-	int32 GetModelInputCount();
+	void RunLinearRegression(FString ModelPath);
 private:
 	void* DLLHandler;
 };

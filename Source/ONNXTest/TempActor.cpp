@@ -11,8 +11,9 @@ void ATempActor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FONNXModule* Plugin = FModuleManager::GetModulePtr<FONNXModule>("ONNX");
-	UE_LOG(LogTemp, Display, TEXT("I'm trying to load a model."));
-	int32 ModelInputCount = Plugin->GetModelInputCount();
-	UE_LOG(LogTemp, Display, TEXT("Model loaded. Model input count = %d"), ModelInputCount);
+	FString ContentDir = FPaths::ProjectContentDir();
+	FString ModelPath = FPaths::Combine(*ContentDir, TEXT("Models/linear.onnx"));
+
+	FONNXModule* ONNX = FModuleManager::GetModulePtr<FONNXModule>("ONNX");
+	ONNX->RunLinearRegression(ModelPath);
 }
